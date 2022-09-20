@@ -1,15 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Todo } from './models/todo';
-import { TodoService } from './services/todo.service';
-import {
-  loadTodos,
-  showAllTodos,
-  showCompleteTodos,
-  showNoneCompleteTodos,
-} from './store/todo.actions';
-import { selectFilteredTodos } from './store/todo.selectors';
+import { TodoFacade } from './store/todo.facade';
 
 @Component({
   selector: 'app-root',
@@ -17,23 +7,11 @@ import { selectFilteredTodos } from './store/todo.selectors';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  todos$;
+  todos$ = this.facade.todos$;
 
-  constructor(private store: Store) {
-    this.todos$ = this.store.select(selectFilteredTodos);
-  }
+  constructor(public facade: TodoFacade) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadTodos());
-  }
-
-  showAllTodos() {
-    this.store.dispatch(showAllTodos());
-  }
-  showCompleteTodos() {
-    this.store.dispatch(showCompleteTodos());
-  }
-  showNonCompleteTodos() {
-    this.store.dispatch(showNoneCompleteTodos());
+    this.facade.loadTodos();
   }
 }

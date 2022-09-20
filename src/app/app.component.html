@@ -1,8 +1,10 @@
 <ng-container *ngIf="todos$ | async as todos; else elseBlock">
   <div>
-    <button (click)="showAllTodos()">Show All Todos</button>
-    <button (click)="showCompleteTodos()">Show Complete Todos</button>
-    <button (click)="showNonCompleteTodos()">Show Non-Complete Todos</button>
+    <button (click)="facade.showAllTodos()">Show All Todos</button>
+    <button (click)="facade.showCompleteTodos()">Show Complete Todos</button>
+    <button (click)="facade.showNonCompleteTodos()">
+      Show Non-Complete Todos
+    </button>
   </div>
   <p *ngFor="let todo of todos">
     {{ todo | json }}
