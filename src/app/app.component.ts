@@ -11,6 +11,8 @@ import {
 } from './store/todo.actions';
 import { selectFilteredTodos } from './store/todo.selectors';
 
+// https://thomasburlesonia.medium.com/push-based-architectures-with-rxjs-81b327d7c32d
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
