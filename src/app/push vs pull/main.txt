@@ -1,0 +1,36 @@
+
+<--- Pull Based --->
+
+export class AppComponent {
+  searchTerm = new FormControl();
+  users: User[] = [];
+
+  constructor(public service: UserService) {}
+
+  ngOnInit() {
+    this.searchTerm.valueChanges.subscribe((value) => {
+      this.loadUsers(value);
+    });
+  }
+
+  loadUsers(searchTerm) {
+    this.service.findAllUsers(searchTerm).then((users) => (this.users = users));
+  }
+}
+
+
+
+<--- Push Based --->
+
+export class AppComponent {
+  searchTerm = new FormControl();
+  users: Observable<User[]> = this.facade.users$;
+
+  constructor(public facade: UserFacade) {}
+
+  ngOnInit() {
+    this.searchTerm.valueChanges.subscribe((value) => {
+      this.facade.findByName(value)
+    });
+  }
+}
