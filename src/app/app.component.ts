@@ -19,14 +19,12 @@ import { selectFilteredTodos } from './store/todo.selectors';
 export class AppComponent implements OnInit {
   todos$;
 
-  constructor(private todoService: TodoService, private store: Store) {
+  constructor(private store: Store) {
     this.todos$ = this.store.select(selectFilteredTodos);
   }
 
   ngOnInit(): void {
-    this.todoService.getTodos().subscribe((v) => {
-      this.store.dispatch(loadTodos({ todos: v }));
-    });
+    this.store.dispatch(loadTodos());
   }
 
   showAllTodos() {

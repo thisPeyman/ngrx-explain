@@ -1,7 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { Todo } from '../models/todo';
 
-export const loadTodos = createAction(
+export const loadTodos = createAction('[Todo Page] Load Todos ');
+export const loadTodosSuccess = createAction(
   '[Todo Page] Load Todos Success',
   props<{ todos: Todo[] }>()
 );

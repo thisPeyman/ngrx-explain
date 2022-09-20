@@ -9,6 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { todoReducer } from './store/todo.reducer';
+import { TodoEffects } from './store/todo.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,7 @@ import { todoReducer } from './store/todo.reducer';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({ todo: todoReducer }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([TodoEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

@@ -11,7 +11,7 @@ export const initialState: TodoState = { todos: null, shownTodosStatus: 'All' };
 
 export const todoReducer = createReducer(
   initialState,
-  on(TodoActions.loadTodos, (state, action) => ({
+  on(TodoActions.loadTodosSuccess, (state, action) => ({
     ...state,
     todos: action.todos,
   })),
